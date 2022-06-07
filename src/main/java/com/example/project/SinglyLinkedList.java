@@ -100,7 +100,38 @@ public class SinglyLinkedList<T> {
 
     // Elimina aquellos nodos de la lista que esten duplicados
     public void deleteDuplicates() {
-
+        Node<T> auxiliar = first;
+        Node<T> auxiliar2 = first;
+        
+        while(auxiliar.getNext() != null){
+            
+            while(auxiliar2.getNext() != null){
+                
+                if(auxiliar.getValue().compareTo(auxiliar2.getNext().getValue())==0){
+                    
+                    size--;
+                    
+                    if(auxiliar2.getNext().getNext() == null && first.getValue().compareTo(auxiliar2.getNext().getValue()) == 0 ){    
+                        
+                        removeFirst();
+                    }
+                    else if(auxiliar2.getNext().getNext() == null){
+                        removeLast();
+                    }
+                    
+                    else{
+                        
+                        auxiliar2.setNext(auxiliar2.getNext().getNext());
+                    }
+                }
+                auxiliar2 = auxiliar2.getNext();//recorre primer while
+                
+            }
+            auxiliar2 = auxiliar.getNext();
+            
+            auxiliar = auxiliar.getNext();//recorre segundo while
+            
+        }
     }
 
     // Inserta un nuevo nodo en una posicion especifica de la lista
@@ -115,9 +146,9 @@ public class SinglyLinkedList<T> {
 
     public static void main(final String[] args) {
 
-        // testExercicio1();
+        testExercicio1();
         // testExercicio2();
-        testExercicio3();       
+        // testExercicio3();       
 
     }
 
