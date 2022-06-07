@@ -1,6 +1,6 @@
 package com.example.project;
 
-public class SinglyLinkedList<T> {
+public class SinglyLinkedList<T extends Comparable> {
     private Node<T> first; // Primero nodo de la lista
     private int size; // Tamano de la lista
 
@@ -111,25 +111,20 @@ public class SinglyLinkedList<T> {
                     
                     size--;
                     
-                    if(auxiliar2.getNext().getNext() == null && first.getValue().compareTo(auxiliar2.getNext().getValue()) == 0 ){    
-                        
+                    if(auxiliar2.getNext().getNext() == null && first.getValue().compareTo(auxiliar2.getNext().getValue()) == 0 ){  
                         removeFirst();
                     }
                     else if(auxiliar2.getNext().getNext() == null){
                         removeLast();
                     }
-                    
                     else{
-                        
                         auxiliar2.setNext(auxiliar2.getNext().getNext());
                     }
                 }
                 auxiliar2 = auxiliar2.getNext();//recorre primer while
-                
             }
             auxiliar2 = auxiliar.getNext();
-            
-            auxiliar = auxiliar.getNext();//recorre segundo while
+            auxiliar = auxiliar.getNext(); //recorre segundo while
             
         }
     }
@@ -146,9 +141,9 @@ public class SinglyLinkedList<T> {
 
     public static void main(final String[] args) {
 
-        // testExercicio1();
+        testExercicio1();
         // testExercicio2();
-        testExercicio3();       
+        //testExercicio3();       
 
     }
 
