@@ -145,12 +145,12 @@ public class SinglyLinkedList<T extends Comparable> {
     	
     	//Evaluo si esta fuera de rango
     	if(position > size-1) {
-    		
+    		size--;
     		System.out.println("Fuera de rango.");
     	}
     	//si la posicion es el primer elemento
     	else if(position == 0) {
-    		
+    		size--;
     		removeFirst();
     		
     	}
