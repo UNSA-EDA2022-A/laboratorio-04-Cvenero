@@ -100,30 +100,34 @@ public class SinglyLinkedList<T extends Comparable> {
 
     // Elimina aquellos nodos de la lista que esten duplicados
     public void deleteDuplicates() {
-        Node<T> auxiliar = first;
-        Node<T> auxiliar2 = first;
+        Node<T> auxiliar = first; //este nodo se mantiene mientras se compara con los demas nodos
+        Node<T> auxiliar2 = first; //este nodo se compara con el nodo auxiliar
         
+        //
         while(auxiliar.getNext() != null){
             
             while(auxiliar2.getNext() != null){
-                
+                //comparamos valores, si es 0 entonces son iguales
                 if(auxiliar.getValue().compareTo(auxiliar2.getNext().getValue())==0){
                     
                     size--;
-                    
+                    //verificamos el ultimo nodo y comparamos el primer con el ultimo nodo
+                    //luego removemos el primero de ser iguales
                     if(auxiliar2.getNext().getNext() == null && first.getValue().compareTo(auxiliar2.getNext().getValue()) == 0 ){  
                         removeFirst();
                     }
+                    //verificamos que es el ultimo nodo repetido y lo removemos
                     else if(auxiliar2.getNext().getNext() == null){
                         removeLast();
                     }
                     else{
+                        //enlaza nodo anterior con el posterior del nodo actual
                         auxiliar2.setNext(auxiliar2.getNext().getNext());
                     }
                 }
                 auxiliar2 = auxiliar2.getNext();//recorre primer while
             }
-            auxiliar2 = auxiliar.getNext();
+            auxiliar2 = auxiliar.getNext();//actualizamos el nodo
             auxiliar = auxiliar.getNext(); //recorre segundo while
             
         }
@@ -136,14 +140,42 @@ public class SinglyLinkedList<T extends Comparable> {
 
     // Elimina el nodo de una posicion especifica de la lista
     public void deleteNth(int position) {
-
+        int cont = 0; //controla la cantidad de iteraciones
+    	Node<T> auxiliar  = first;
+    	
+    	//Evaluo si esta fuera de rango
+    	if(position > size-1) {
+    		
+    		System.out.println("Fuera de rango.");
+    	}
+    	//si la posicion es el primer elemento
+    	else if(position == 0) {
+    		
+    		removeFirst();
+    		
+    	}
+    	else {
+    		//recorre la lista hasta uno antes de la posicion indicada
+    		//para poder eliminar el nodo que sigue
+	    	while(cont < position-1) {
+	    		
+	    		auxiliar = auxiliar.getNext();
+	    		
+	    		cont++;
+	    		
+	    	}
+	    	//enlaza un nodo anterior a uno posterior con respecto al nodo actual
+	    	
+	    	auxiliar.setNext(auxiliar.getNext().getNext());
+	    	size--;
+    	}
     }
 
     public static void main(final String[] args) {
 
         testExercicio1();
         // testExercicio2();
-        //testExercicio3();       
+        testExercicio3();       
 
     }
 
